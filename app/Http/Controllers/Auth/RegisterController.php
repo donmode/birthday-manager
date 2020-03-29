@@ -60,6 +60,9 @@ class RegisterController extends Controller
         if($data['middlename']){
             $validate['middlename'] = ['string', 'max:50'];
         }
+        if($data['is_admin']){
+            $validate['is_admin'] = ['boolean'];
+        }
         if($data['phone2']){
             $validate['phone2'] = ['numeric', 'min:10|max:10'];
         }
@@ -86,6 +89,7 @@ class RegisterController extends Controller
             'phone2' => $data['phone2'],
             'birthday' => $data['birthday'],
             'email' => $data['email'],
+            'is_admin' => $data['is_admin'],
             'password' => Hash::make($data['password']),
         ]);
     }

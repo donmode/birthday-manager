@@ -6,5 +6,10 @@ use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
-    //
+    public function index(){
+        return view('media.create');
+    }
+    public function create(){
+        return view('media.create');
+    }
 }

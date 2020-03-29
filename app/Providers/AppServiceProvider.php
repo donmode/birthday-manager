@@ -3,9 +3,13 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Policies\MediumUserPolicy;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected  $policies = [
+        MediumUser::class => MediumUserPolicy::class,
+    ];
     /**
      * Register any application services.
      *
@@ -23,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//        $this->registerPolicies();
     }
 }

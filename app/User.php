@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'firstname', 'lastname', 'middlename', 
+        'name', 'email', 'firstname', 'lastname', 'middlename', 
         'address', 'phone1', 'phone2', 'birthday',  
     ];
 
@@ -26,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'is_admin'
     ];
 
     /**
@@ -37,4 +38,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime', 'birthday'=>'date:d-m-Y'
     ];
+
+    // public function isAdmin(){
+    //     $user = Auth::user();
+    //     if(!$user->is_admin){
+    //         return false;
+    //     }
+    //     return true;
+    // }
 }

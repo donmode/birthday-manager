@@ -49,9 +49,11 @@
                                 </li>
                             @endif
                         @else
-                        <li class="nav-item" style="text-decoration: underline;">
-                                    <a class="nav-link" href="{{ route('add-media') }}">{{ __('Add Social Media Account') }}</a>
-                            </li>
+                            @cannot('create', MediumUser::class)
+                                <li class="nav-item" style="text-decoration: underline;">
+                                        <a class="nav-link" href="{{ route('add-media') }}">{{ __('Add Social Media Account') }}</a>
+                                </li>
+                            @endcan
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -18,4 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'UserController@index')->name('home');
-Route::get('/add-media', 'HomeController@index')->name('add-media');
+Route::get('/add-media', 'MediumUserController@create')->name('add-media');
+Route::post('/users/make-admin', 'UserController@makeAdmin')->name('make-admin');
+Route::get('/create-media', 'MediaController@create')->name('create-media');
