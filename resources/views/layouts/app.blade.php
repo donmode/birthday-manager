@@ -72,10 +72,10 @@
                             @endcan
                             
                             
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa fa-user d-inline ml-2 "></i>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            <li class="nav-item dropdown" style="color:yellow;">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" style="color:yellow;" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="fa fa-user d-inline ml-2 " style="color:yellow;"></i>
+                                    {{ Auth::user()->name }} <span class="caret" style="color:yellow;"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
