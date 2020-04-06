@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use App\Validation;
 
 class AppServiceProvider extends ServiceProvider
@@ -38,6 +39,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        $this->registerPolicies();
+        Schema::defaultStringLength(191);
     }
 }
