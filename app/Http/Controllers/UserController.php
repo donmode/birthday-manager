@@ -65,13 +65,15 @@ class UserController extends Controller
             'user'=>"required|integer"
         ]);
         $user = $User->where('id', $user['user'])->get()->first();
+        if($user->id == 1 || $user->id == 2){
+            return back()->with("Cannot revoke this users access!");
+        }
         $user->is_admin = !$user->is_admin;
         $user->save();
         return back();
     }
 
     public function destroy(User $user){
-        dd($user);
         $user->delete();
         return back()->with('status', 'Record Deleted Successfully!');
     }
