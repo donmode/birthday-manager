@@ -1,3 +1,9 @@
+
+
+@extends('layouts.app')
+
+@section('content')
+
 <style>
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -9,11 +15,32 @@
     input[type=number] {
         -moz-appearance:textfield; /* Firefox */
     }
+
+        .plusBox{
+            display: block;
+            width: 100%;
+            height: calc(1.6em + 0.75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: black;
+            background-color: #ccc;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            border-top-right-radius: 0%;
+            border-bottom-right-radius: 0%;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .numberBox{
+            border-top-left-radius: 0%;
+            border-bottom-left-radius: 0%
+        }
+
 </style>
 
-@extends('layouts.app')
-
-@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -42,7 +69,7 @@
                             <label for="middlename" class="col-md-4 col-form-label text-md-right">{{ __('Middle Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ old('middlename') }}" required autocomplete="middlename" autofocus>
+                                <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" name="middlename" value="{{ old('middlename') }}" autocomplete="middlename" autofocus>
 
                                 @error('middlename')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +84,7 @@
                             <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" autocomplete="lastname" autofocus>
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -112,9 +139,11 @@
                             <label for="phone1" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <span>+234</span>
-                                <input id="phone1" type="number" minlength="10" maxlength="10" class="form-control @error('phone1') is-invalid @enderror" name="phone1" value="{{ old('phone1') }}" autocomplete="phone1" autofocus>
-                                  
+
+                                <div class="row">
+                                <span class="col-md-1 col-lg-1 col-xs-1 col-sm-1 plusBox text-right">+</span>
+                                <input id="phone1" type="number" placeholder="2348063636363" minlength="10" maxlength="13" class="numberBox form-control col-md-11 col-lg-11 col-xs-11 col-sm-11 @error('phone1') is-invalid @enderror" name="phone1" value="{{ old('phone1') }}" autocomplete="phone1" required autofocus>
+                                </div>
                                 @error('phone1')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -127,9 +156,10 @@
                             <label for="phone2" class="col-md-4 col-form-label text-md-right">{{ __('Phone (Alternative)') }}</label>
 
                             <div class="col-md-6">
-                                <span>+234</span>
-                                <input id="phone2" type="number" minlength="10" maxlength="10" class="form-control @error('phone2') is-invalid @enderror" name="phone2" value="{{ old('phone2') }}" autocomplete="phone2" autofocus>
-                                  
+                                <div class="row">
+                                <span class="col-md-1 col-lg-1 col-xs-1 col-sm-1 plusBox text-right">+</span>
+                                <input id="phone2" type="number" placeholder="2348074747474" minlength="10" maxlength="13" class="numberBox  col-md-11 col-lg-11 col-xs-11 col-sm-11 form-control @error('phone2') is-invalid @enderror" name="phone2" value="{{ old('phone2') }}" autocomplete="phone2" autofocus>
+                                </div>
                                 @error('phone2')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -159,8 +189,8 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" autocomplete="address" autofocus>
-                                    
+                                <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address" required autocomplete="address" autofocus>
+                                    {{ old('address') }}
                                 </textarea>
 
                                 @error('address')

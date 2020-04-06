@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\MediumUser;
+use App\MediumUsers;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class MediumUserPolicy
+class MediumUsersPolicy
 {
     use HandlesAuthorization;
 
@@ -19,17 +19,17 @@ class MediumUserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return ($user->is_admin);
     }
 
     /**
      * Determine whether the user can view the medium user.
      *
      * @param  \App\User  $user
-     * @param  \App\MediumUser  $mediumUser
+     * @param  \App\MediumUsers  $mediumUser
      * @return mixed
      */
-    public function view(User $user, MediumUser $mediumUser)
+    public function view(User $user, MediumUsers $mediumUser)
     {
         //
     }
@@ -42,57 +42,57 @@ class MediumUserPolicy
      */
     public function create(User $user)
     {
-        if($user->isAdmin()){
-            Response::allow();
-        }
-        Response::deny("You are not allowed to access this resource");
+        //
     }
 
     /**
      * Determine whether the user can update the medium user.
      *
      * @param  \App\User  $user
-     * @param  \App\MediumUser  $mediumUser
+     * @param  \App\MediumUsers  $mediumUser
      * @return mixed
      */
-    public function update(User $user, MediumUser $mediumUser)
+    public function update(User $user, MediumUsers $mediumUser)
     {
-        //
+        return ($user->id === $mediumUser->user_id);
     }
 
     /**
      * Determine whether the user can delete the medium user.
      *
      * @param  \App\User  $user
-     * @param  \App\MediumUser  $mediumUser
+     * @param  \App\MediumUsers  $mediumUser
      * @return mixed
      */
-    public function delete(User $user, MediumUser $mediumUser)
+    public function delete(User $user, MediumUsers $mediumUser)
     {
-        //
+        return (($user->id === $mediumUser->user_id) || $user->is_admin);
+        
     }
 
     /**
      * Determine whether the user can restore the medium user.
      *
      * @param  \App\User  $user
-     * @param  \App\MediumUser  $mediumUser
+     * @param  \App\MediumUsers  $mediumUser
      * @return mixed
      */
-    public function restore(User $user, MediumUser $mediumUser)
+    public function restore(User $user, MediumUsers $mediumUser)
     {
-        //
+        return ($user->is_admin);
+        
     }
 
     /**
      * Determine whether the user can permanently delete the medium user.
      *
      * @param  \App\User  $user
-     * @param  \App\MediumUser  $mediumUser
+     * @param  \App\MediumUsers  $mediumUser
      * @return mixed
      */
-    public function forceDelete(User $user, MediumUser $mediumUser)
+    public function forceDelete(User $user, MediumUsers $mediumUser)
     {
-        //
+        return ($user->is_admin);
+        
     }
 }

@@ -52,24 +52,40 @@ class RegisterController extends Controller
         $validate = [
             'firstname' => ['required', 'string', 'max:50'],
             'lastname' => ['required', 'string', 'max:50'],
-            'phone1' => ['required','numeric', 'min:10|max:10', 'unique:users'],
+            'phone1' => ['required','numeric', 'min:13', 'unique:users'],
             'birthday' => ['required',  'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address' => ['required', 'max:255'],
         ];
         if($data['middlename']){
             $validate['middlename'] = ['string', 'max:50'];
         }
-        if($data['is_admin']){
-            $validate['is_admin'] = ['boolean'];
-        }
         if($data['phone2']){
-            $validate['phone2'] = ['numeric', 'min:10|max:10'];
+            $validate['phone2'] = ['numeric', 'min:13'];
         }
-        if($data['address']){
-            $validate['address'] = ['max:255'];
-        }
-        return Validator::make($data, $validate);
+        $customMessage = [
+        "firstname.required" => "First Name is required",
+        "lastname.required" => "Last Name is required",
+        "address.required" => "Address is required",
+        "phone1.required" => "Primary Phone Number is required",
+        "firstname.string" => "First Name must be string",
+        "lastname.string" => "Last Name must be string",
+        "middlename.string" => "Middle Name must be string",
+        "phone1.numeric" => "Primary Phone Number must be numeric",
+        "email.required" => "Email address is required",
+        "email.unique" => "Email address is already taken",
+        "phone1.unique" => "Primary Phone Number is already taken",
+        "phone2.unique" => "Alternative Phone Number is already taken",
+        "phone2.numeric" => "Alternative Phone Number must be numeric",
+        "firstname.min" => "First Name must be more than 50",
+        "middlename.min" => "Middle Name must be more than 50",
+        "last.min" => "Last Name must be more than 255",
+        "address.min" => "Address must be more than 50",
+        "phone1.min" => "Primary Phone Number must be 13 or more",
+        "phone2.min" => "Alternative Phone Number must be 13 or more",
+        ];
+        return Validator::make($data, $validate, $customMessage);
     }
 
     /**
@@ -89,7 +105,6 @@ class RegisterController extends Controller
             'phone2' => $data['phone2'],
             'birthday' => $data['birthday'],
             'email' => $data['email'],
-            'is_admin' => $data['is_admin'],
             'password' => Hash::make($data['password']),
         ]);
     }

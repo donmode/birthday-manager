@@ -6,11 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -18,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'firstname', 'lastname', 'middlename', 
-        'address', 'phone1', 'phone2', 'birthday',  
+        'address', 'phone1', 'phone2', 'birthday',  'password',   'picture_url'
     ];
 
     /**
@@ -39,11 +40,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime', 'birthday'=>'date:d-m-Y'
     ];
 
-    // public function isAdmin(){
-    //     $user = Auth::user();
-    //     if(!$user->is_admin){
-    //         return false;
-    //     }
-    //     return true;
-    // }
+    public function medium_users()
+    {
+        return $this->hasMany('App\MediumUsers');
+    }
 }

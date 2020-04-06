@@ -18,13 +18,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        a, a:link, {
+            color: yellow;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Birthday Manager') }}
+        <nav class="navbar navbar-expand-md  shadow-sm" style="background-color:purple;">
+            <div class="container" style="color: yellow;">
+                <a  style="color: yellow;" class="navbar-brand" href="{{ url('/home') }}">
+                    {{ config('app.name', '2012 WAEC') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,19 +46,31 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a style="color: yellow;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a  style="color: yellow;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            @cannot('create', MediumUser::class)
+                            <li class="nav-item" style="text-decoration: underline;">
+                                    <a style="color: yellow;" class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                            </li>
+                            
+                            @can('viewAny', App\MediumUsers::class)
                                 <li class="nav-item" style="text-decoration: underline;">
-                                        <a class="nav-link" href="{{ route('add-media') }}">{{ __('Add Social Media Account') }}</a>
+                                        <a style="color: yellow;" class="nav-link" href="{{ route('mediausers') }}">{{ __('View Social Media Accounts') }}</a>
                                 </li>
                             @endcan
+                            
+
+                            @can('viewAny', App\Media::class)
+                                <li class="nav-item" style="text-decoration: underline;">
+                                        <a style="color: yellow;" class="nav-link" href="{{ route('media') }}">{{ __('Social Media') }}</a>
+                                </li>
+                            @endcan
+                            
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

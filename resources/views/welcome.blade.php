@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Birthday Manager</title>
+        <title>2012 WAEC</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -13,7 +13,7 @@
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                color: purple;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -61,6 +61,9 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+
+            
         </style>
     </head>
     <body>
@@ -81,7 +84,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    WAEC SET 2013
+                    <p>2012 WAEC</p>
+                
+                    <p style="color:yellow;"><small>TREND SETTERS</small></p>
                 </div>
 
 <!--                <div class="links">

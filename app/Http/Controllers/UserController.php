@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Validation;
 
 class UserController extends Controller
 {
@@ -29,9 +30,37 @@ class UserController extends Controller
         return view('home', compact('users', 'counter'));
     }
 
+    public function update(User $user){
+        return view('users.edit', compact('user'));
+    }
+
+    public function show(User $user){
+        return view('users.view', compact('user'));
+    }
+    
+    public function store(User $user, Validation $validation){
+        $data = $validation->validate();
+        if(request()->file('picture_url')){
+            $file_name = request()['lastname'].'_'.request()['firstname'].'_'.time().'_'.rand(8888,9999); 
+            $path = request()->file('picture_url')->storeAs(
+                'public/'.$user->id.'/profile_pictures', $file_name
+            );
+            $data['picture_url'] = 'storage/'.$user->id."/profile_pictures/".$file_name;
+        }
+        foreach($data as $key => $datum){
+            $user->$key = $datum;
+        }
+        $saved = $user->save();
+        if($saved){
+            return redirect('/users/'.$user->id.'/view');
+        }else{
+            return back();
+        }
+    }
+
     public function makeAdmin(){
         $this->authorize('makeAdmin', User::class);
-        $User = new \App\User();
+        $User = new User();
         $user = request()->validate([
             'user'=>"required|integer"
         ]);
@@ -39,5 +68,11 @@ class UserController extends Controller
         $user->is_admin = !$user->is_admin;
         $user->save();
         return back();
+    }
+
+    public function destroy(User $user){
+        dd($user);
+        $user->delete();
+        return back()->with('status', 'Record Deleted Successfully!');
     }
 }
