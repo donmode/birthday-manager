@@ -5,11 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
+                @can('update', $user, App\User::class)
+
                 <div class="card-header">
                     <div class="pr-2 text-right">
                         <a href="/mediausers/create" class="btn btn-sm btn-dark">Add Social Medium Account</a>
                     </div>
                 </div>
+                @endcan
 
                 <div class="card-header">
                     @if (session('status'))
