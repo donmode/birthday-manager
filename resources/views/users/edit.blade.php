@@ -1,6 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+
+        .plusBox{
+            display: block;
+            width: 100%;
+            height: calc(1.6em + 0.75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: black;
+            background-color: #ccc;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            border-top-right-radius: 0%;
+            border-bottom-right-radius: 0%;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .numberBox{
+            border-top-left-radius: 0%;
+            border-bottom-left-radius: 0%
+        }
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -51,8 +77,14 @@
                         
                         
                         <div class="form-group">
-                            <label for="phone1">Phone Number (+)</label>
-                            <input name="phone1" type="text" class="form-control" id="phone1"   required aria-describedby="phone1Help" value = "{{ (old('phone1')) ? old('phone1') : $user->phone1 }}">
+                            
+                            <label for="phone1">Phone Number </label>
+
+                            <div class="row  pl-3 pr-3">
+                                <span class="col-md-1 col-lg-1 col-xs-1 col-sm-1 plusBox text-right">+</span>
+                                <input name="phone1" type="text" class="col-md-11 col-lg-11 col-xs-11 col-sm-11 form-control numberBox" id="phone1"   required aria-describedby="phone1Help" value = "{{ (old('phone1')) ? old('phone1') : $user->phone1 }}">
+                            </div>
+
                             <small id="phone1Help" class="form-text text-muted">Kindly enter your primary mobile number</small>
                             @error('phone1')
                                 <small class="text-danger">{{ $message }}</small>
@@ -60,8 +92,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="phone2">Alternative Phone Number (+)</label>
-                            <input name="phone2" type="text" class="form-control"   id="phone2" aria-describedby="phone2Help" value = "{{ (old('phone2')) ? old('phone2') : $user->phone2 }}">
+                            <label for="phone2">Alternative Phone Number</label>
+                            
+                            
+                            <div class="row  pl-3 pr-3">
+                                <span class="col-md-1 col-lg-1 col-xs-1 col-sm-1 plusBox text-right">+</span>
+                                <input name="phone2" type="text" class="col-md-11 col-lg-11 col-xs-11 col-sm-11 numberBox form-control"   id="phone2" aria-describedby="phone2Help" value = "{{ (old('phone2')) ? old('phone2') : $user->phone2 }}">
+                            </div>
+                            
                             <small id="phone2Help" class="form-text text-muted">Kindly enter your alternative mobile number</small>
                             @error('phone2')
                                 <small class="text-danger">{{ $message }}</small>
