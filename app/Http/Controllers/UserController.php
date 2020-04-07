@@ -66,7 +66,7 @@ class UserController extends Controller
         ]);
         $user = $User->where('id', $user['user'])->get()->first();
         if($user->id == 1){
-            return back()->with('status',"Cannot revoke this users access!");
+            return back()->with('status',"Sorry! This users access cannot be revoked!");
         }
         $user->is_admin = !$user->is_admin;
         $user->save();
