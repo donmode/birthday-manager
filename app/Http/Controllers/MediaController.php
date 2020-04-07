@@ -43,7 +43,6 @@ class MediaController extends Controller
     }
     public function store(Validation $validation){
         $data = $validation->validate();
-        dd($data);
         if(request()->file('logo_url')){
             $file_name = request()['name'].'_'.time().'_'.rand(8888,9999); 
             $path = request()->file('logo_url')->storeAs(
