@@ -66,7 +66,7 @@ class UserController extends Controller
         ]);
         $user = $User->where('id', $user['user'])->get()->first();
         if($user->id == 1){
-            return back()->with('status',"Sorry! This users access cannot be revoked!");
+            return back()->with('status',"Sorry! This user's access cannot be revoked!");
         }
         $user->is_admin = !$user->is_admin;
         $user->save();
@@ -75,7 +75,7 @@ class UserController extends Controller
 
     public function destroy(User $user){
         if($user->id == 1){
-            return back()->with('status',"Sorry! This users cannot be deleted!");
+            return back()->with('status',"Sorry! This user's record cannot be deleted!");
         }
         $user->delete();
         return back()->with('status', 'Record Deleted Successfully!');
