@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Validation;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -77,6 +78,9 @@ class UserController extends Controller
         if($user->id == 1){
             return back()->with('status',"Sorry! This user's record cannot be deleted!");
         }
+        $user->deleted_by = Auth::id();
+        $user->save();
+        
         $user->delete();
         return redirect()->route('home')->with('status', 'Record Deleted Successfully!');
     }
