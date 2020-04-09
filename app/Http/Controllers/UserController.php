@@ -78,6 +78,6 @@ class UserController extends Controller
             return back()->with('status',"Sorry! This user's record cannot be deleted!");
         }
         $user->delete();
-        return back()->with('status', 'Record Deleted Successfully!');
+        return redirect()->route('home')->with('status', 'Record Deleted Successfully!');
     }
 }
