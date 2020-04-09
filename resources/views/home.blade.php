@@ -47,7 +47,7 @@
                             <td scope="col">{{ucfirst($user->middlename)}}</td>
                             <!-- <td scope="col">{{($user->phone1)?'0'.$user->phone1:''}}</td>
                             <td scope="col">{{($user->phone2)?'0'.$user->phone2:''}}</td> -->
-                            <td scope="col">{{date('d-m-Y', strtotime($user->birthday))}}</td>
+                            <td scope="col">{{date(" M j ", strtotime($user->birthday))}}</td>
                             @can('makeAdmin', App\User::class)
                               <td scope="col">{{($user->is_admin)? "Yes": "No"}}</td>
                               <td scope="col" style="padding: 0.75rem 0; margin: auto 0;">

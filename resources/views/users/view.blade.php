@@ -47,7 +47,7 @@
                 <div class="card-body">
                         <div class="row">
                                 <span class="col-sm-3 font-weight-bold text-right">{{"Birthday:"}}</span>
-                                <span class="col-sm-9">{{date('d-m-Y', strtotime($user->birthday))}}</span>
+                                <span class="col-sm-9">{{date("jS \of M", strtotime($user->birthday))}}</span>
                         </div>
                         <div class="row">
                                 <span class="col-sm-3 font-weight-bold text-right">{{"Email:"}}</span>

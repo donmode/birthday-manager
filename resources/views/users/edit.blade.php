@@ -106,6 +106,17 @@
                             @enderror
                         </div>
 
+
+                        <div class="form-group">
+                            <label for="birthday">Birthday</label>
+                                <input name="birthday" type="date" class="form-control"   id="birthday" aria-describedby="birthdayHelp" value = "{{ (old('birthday')) ? old('birthday') : date("Y-m-d", strtotime($user->birthday)) }}">
+                            
+                            <small id="birthdayHelp" class="form-text text-muted">Kindly enter your birthday</small>
+                            @error('birthday')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <label for="address">Address</label>
                             <textarea name="address" class="form-control" id="address" required aria-describedby="addressHelp" value = "{{ (old('address')) ? old('address') : $user->address }}">
