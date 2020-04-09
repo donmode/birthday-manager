@@ -74,6 +74,9 @@ class UserController extends Controller
     }
 
     public function destroy(User $user){
+        if($user->id == 1){
+            return back()->with('status',"Sorry! This users cannot be deleted!");
+        }
         $user->delete();
         return back()->with('status', 'Record Deleted Successfully!');
     }
